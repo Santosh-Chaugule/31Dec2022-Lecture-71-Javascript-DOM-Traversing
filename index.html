@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lecture 71-Javascript DOM Traversing</title>
+    <style>
+      /* this is for Styling/CSS */
+      #grandparent {
+        border: 3px solid red;
+      }
+      #parent {
+        border: 3px solid blueviolet;
+      }
+      .child1 {
+        border: 3px dotted green;
+      }
+      .child2 {
+        border: 3px dotted black;
+      }
+    </style>
+    <script></script>
+  </head>
+  <body>
+    <!-- this space belongs to the HTML -->
+    <div id="grandparent">
+      Grandparent
+      <div id="parent">
+        Parent
+        <div class="child1">Child1</div>
+        <div class="child2">Child2</div>
+      </div>
+    </div>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Santosh</td>
+          <td>Chaugule</td>
+          <td>
+            <button data-id="d1" onclick="delettd(this)">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Yogesh</td>
+          <td>Gaikwad</td>
+          <td>
+            <button data-id="d2" onclick="delettd(this)">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Onkar</td>
+          <td>Kadam</td>
+          <td>
+            <button data-id="d3" onclick="delettd(this)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <script>
+      // You can write here JS code
+      console.log();
+
+      //   document.querySelector(".child1").innerHTML = "chidren1";
+      //   document.querySelector(".child1").style.border = "3px solid yellow";
+
+      //use DRY principle
+
+      let c1 = document.querySelector(".child1");
+      c1.innerHTML = "chidren1";
+      c1.style.border = "3px solid yellow";
+
+      let gp = document.querySelector(".child2").closest("#grandparent");
+      console.log(gp);
+
+      let ltd = document.querySelector("table tbody tr td:last-child");
+
+      ltd.style.color = "red";
+      console.log(ltd);
+
+      let tbody = ltd.closest("tbody");
+      //  document.querySelector
+      let yogesh = tbody.querySelector("tr:nth-child(2) td:first-child");
+
+      console.log(tbody);
+      yogesh.style.color = "green";
+    </script>
+    <script>
+      function delettd(element) {
+        console.log(element);
+        let tr = element.closest("tr");
+        tr.remove();
+        console.log(tr);
+      }
+    </script>
+  </body>
+</html>
